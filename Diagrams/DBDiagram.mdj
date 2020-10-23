@@ -166,7 +166,7 @@
 									"font": "Arial;13;1",
 									"left": 80,
 									"top": 173,
-									"width": 196.12451171875,
+									"width": 203.81787109375,
 									"height": 13,
 									"text": "Tests"
 								},
@@ -192,7 +192,7 @@
 											"font": "Arial;13;0",
 											"left": 85,
 											"top": 196,
-											"width": 186.12451171875,
+											"width": 193.81787109375,
 											"height": 13
 										},
 										{
@@ -207,7 +207,7 @@
 											"font": "Arial;13;0",
 											"left": 85,
 											"top": 211,
-											"width": 186.12451171875,
+											"width": 193.81787109375,
 											"height": 13
 										},
 										{
@@ -222,21 +222,21 @@
 											"font": "Arial;13;0",
 											"left": 85,
 											"top": 226,
-											"width": 186.12451171875,
+											"width": 193.81787109375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 80,
 									"top": 191,
-									"width": 196.12451171875,
+									"width": 203.81787109375,
 									"height": 53
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 80,
 							"top": 168,
-							"width": 196.12451171875,
+							"width": 203.81787109375,
 							"height": 76,
 							"nameLabel": {
 								"$ref": "AAAAAAF1STEE5dWgT0A="
@@ -949,8 +949,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 325,
-									"top": 199,
+									"left": 329,
+									"top": 179,
 									"width": 33.95361328125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -967,8 +967,8 @@
 										"$ref": "AAAAAAF1SbbfXdZpxeM="
 									},
 									"font": "Arial;13;0",
-									"left": 300,
-									"top": 199,
+									"left": 308,
+									"top": 179,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -985,7 +985,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 382,
-									"top": 199,
+									"top": 179,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -1002,7 +1002,7 @@
 								"$ref": "AAAAAAF1STEE5dWfmP4="
 							},
 							"lineStyle": 2,
-							"points": "275:220;408:220",
+							"points": "283:200;408:200",
 							"nameLabel": {
 								"$ref": "AAAAAAF1SbbfXdZqc/s="
 							},
@@ -3208,7 +3208,7 @@
 								"$ref": "AAAAAAF1STEE5dWdl60="
 							},
 							"name": "plannedDate",
-							"type": "DATE",
+							"type": "DATETIME",
 							"length": 0,
 							"nullable": true
 						},

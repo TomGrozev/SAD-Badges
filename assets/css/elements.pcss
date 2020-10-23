@@ -1,0 +1,251 @@
+/* Buttons */
+
+.btn-wrapper {
+    @apply flex w-full rounded-md shadow-sm;
+}
+
+@screen sm {
+    .btn-wrapper {
+        @apply w-auto;
+    }
+}
+
+.btn {
+    @apply inline-flex justify-center w-full rounded-md border-transparent px-4 py-2 bg-brand text-base leading-6 font-medium text-white shadow-sm transition ease-in-out duration-150;
+
+    &.danger {
+        @apply bg-red-600;
+    }
+
+    &.success {
+        @apply bg-green-600;
+    }
+
+    &.cta {
+        @apply bg-cta;
+    }
+
+    &.info {
+        @apply bg-info;
+    }
+
+    &:hover {
+        @apply bg-brand-light;
+
+        &.danger {
+            @apply bg-red-500;
+        }
+
+        &.success {
+            @apply bg-green-500;
+        }
+
+        &.cta {
+            @apply bg-cta-light;
+        }
+
+        &.info {
+            @apply bg-info-light;
+        }
+    }
+
+    &:focus {
+        @apply border-brand-dark;
+
+        &.danger {
+            @apply border-red-700;
+        }
+
+        &.success {
+            @apply border-green-700;
+        }
+
+        &.cta {
+            @apply border-cta-dark;
+        }
+
+        &.info {
+            @apply border-info-dark;
+        }
+    }
+}
+
+.btn-outline {
+    @apply inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm transition ease-in-out duration-150;
+
+    &:hover {
+        @apply text-gray-500;
+    }
+
+    &:focus {
+        @apply border-blue-300;
+    }
+}
+
+.btn:focus, .btn-outline:focus {
+    @apply outline-none
+}
+
+@screen sm {
+    .btn, .btn-outline {
+        @apply text-sm leading-5
+    }
+}
+
+/* Input */
+.form-control {
+    @apply flex items-center justify-between flex-wrap mt-4;
+
+    label {
+        @apply block w-full text-gray-700;
+    }
+
+    select {
+        @apply appearance-none;
+
+        &[id$='_year'],
+        &[id$='_month'],
+        &[id$='_day'] {
+            @apply w-1/4;
+        }
+
+        &[id$='_hour'],
+        &[id$='_minute'] {
+            @apply w-2/5;
+        }
+    }
+
+    input, textarea, select {
+        @apply w-full mt-2 px-3 py-2 block rounded bg-gray-200 text-gray-800 border border-gray-300 leading-tight;
+
+        &:focus {
+            @apply outline-none bg-white border-gray-500;
+        }
+    }
+
+    .invalid-feedback {
+        @apply text-danger;
+    }
+}
+
+
+/* Table */
+
+table.table-card {
+    @apply w-full leading-normal;
+
+    thead {
+        @apply border-b-2 border-gray-200 bg-gray-100;
+
+        tr th {
+            @apply px-5 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider;
+        }
+    }
+
+    tbody tr {
+        @apply border-b border-gray-200;
+
+        td {
+            @apply p-5 text-sm relative;
+        }
+    }
+
+    &.responsive thead tr th {
+        @apply hidden;
+    }
+
+    &.responsive tbody tr {
+        @apply flex flex-row flex-wrap;
+
+        td {
+            @apply w-full pt-8;
+
+            span {
+                @apply absolute top-0 left-0 bg-gray-200 px-2 py-1 text-xs font-bold uppercase;
+            }
+        }
+    }
+}
+
+@screen sm {
+    table.table-card.responsive {
+        Thead tr th {
+            @apply table-cell;
+        }
+
+        tbody tr {
+            @apply table-row flex-no-wrap;
+
+            td {
+                @apply table-cell static w-auto pt-5;
+
+                span {
+                    @apply hidden;
+                }
+            }
+        }
+    }
+}
+
+
+/* Modal */
+.modal-footer {
+    @apply bg-gray-300 bg-opacity-50 px-4 py-3;
+
+    & > .btn-wrapper:not(:first-of-type) {
+        @apply mt-3;
+    }
+}
+
+@screen sm {
+    .modal-footer {
+        @apply px-6 flex flex-row-reverse;
+
+        & > .btn-wrapper {
+            @apply mt-0 !important;
+
+            &:not(:last-of-type) {
+                @apply ml-3;
+            }
+        }
+    }
+}
+
+
+/* Alerts and form errors */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert p {
+    margin-bottom: 0;
+}
+
+.alert:empty {
+    display: none;
+}
+
+.icon {
+    @apply max-w-full max-h-full;
+}
