@@ -1,0 +1,51 @@
+<%%= if @live_action in [:new, :edit] do %>
+  <%%= live_modal @socket, <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web_namespace, schema.alias) %>Live.FormComponent,
+    id: @<%= schema.singular %>.id || :new,
+    title: @page_title,
+    action: @live_action,
+    <%= schema.singular %>: @<%= schema.singular %>,
+    return_to: Routes.<%= schema.route_helper %>_index_path(@socket, :index) %>
+<%% end %>
+
+
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3"> Listing <%= schema.human_plural %> </h1>
+
+    <div class="inline-block bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <table class="table-card responsive">
+            <thead>
+            <tr>
+                <%= for {k, _} <- schema.attrs do %>      <th><%= Phoenix.Naming.humanize(Atom.to_string(k)) %></th>
+                <% end %>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="<%= schema.plural %>">
+                <%%= for <%= schema.singular %> <- @<%= schema.collection %> do %>
+                <tr id="<%= schema.singular %>-<%%= <%= schema.singular %>.id %>">
+                    <%= for {k, _} <- schema.attrs do %>        <td><%%= <%= schema.singular %>.<%= k %> %></td>
+                    <% end %>
+
+                    <td>
+                        <div class="flex space-x-2 justify-center">
+                            <div class="btn-wrapper"><%%= live_redirect "Show", to: Routes.<%= schema.route_helper %>_show_path(@socket, :show, <%= schema.singular %>), class: "btn-outline" %></div>
+                            <div class="btn-wrapper"><%%= live_patch "Edit", to: Routes.<%= schema.route_helper %>_index_path(@socket, :edit, <%= schema.singular %>), class: "btn info" %></div>
+                            <div class="btn-wrapper"><%%= link "Delete", to: "#", phx_click: "delete", phx_value_id: <%= schema.singular %>.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
+                        </div>
+                    </td>
+                </tr>
+                <%% end %>
+            </tbody>
+        </table>
+        <%%= if length(@<%= schema.plural %>) == 0 do %>
+        <p class="text-center my-12 text-gray-500 italic text-md">There are no <%= schema.plural %> yet :/</p>
+        <%% end %>
+
+        <div class="p-5 border-t flex justify-end">
+            <div class="btn-wrapper">
+                <%%= live_patch "New <%= schema.human_singular %>", to: Routes.<%= schema.route_helper %>_index_path(@socket, :new), class: "btn cta" %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<%%= f = form_for @changeset, "#",
+id: "<%= schema.singular %>-form",
+phx_target: @myself,
+phx_change: "validate",
+phx_submit: "save" %>
+
+<div class="bg-white px-4 pt-5 pb-8 sm:p-6">
+  <h3 class="text-lg leading-6 font-semibold text-gray-900" id="modal-headline"><%%= @title %></h3>
+
+  <div class="mt-2">
+
+    <%= for {label, input, error} <- inputs, input do %>
+      <div class="form-control">
+        <%= label %>
+        <%= input %>
+        <%= error %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div class="btn-wrapper">
+    <%%= submit "Save", class: "btn", phx_disable_with: "Saving..." %>
+  </div>
+  <div class="btn-wrapper">
+    <%%= live_patch "Cancel", to: @return_to, class: "btn-outline" %>
+  </div>
+</div>
+</form>
