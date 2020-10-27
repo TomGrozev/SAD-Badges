@@ -1,0 +1,54 @@
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, BadgesWeb.ActivityLive.FormComponent,
+    id: @activity.id || :new,
+    title: @page_title,
+    action: @live_action,
+    activity: @activity,
+    return_to: Routes.activity_index_path(@socket, :index) %>
+<% end %>
+
+
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3"> Listing Activities </h1>
+
+    <div class="inline-block bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <table class="table-card responsive">
+            <thead>
+            <tr>
+                      <th>Datetime</th>
+                      <th>Name</th>
+
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="activities">
+                <%= for activity <- @activities do %>
+                <tr id="activity-<%= activity.id %>">
+                            <td><%= activity.datetime %></td>
+                            <td><%= activity.name %></td>
+
+
+                    <td>
+                        <div class="flex space-x-2 justify-center">
+                            <div class="btn-wrapper"><%= live_redirect "Show", to: Routes.activity_show_path(@socket, :show, activity), class: "btn-outline" %></div>
+                            <div class="btn-wrapper"><%= live_patch "Edit", to: Routes.activity_index_path(@socket, :edit, activity), class: "btn info" %></div>
+                            <div class="btn-wrapper"><%= live_patch "Mark Attendance", to: Routes.activity_attendance_path(@socket, :edit, activity), class: "btn warning" %></div>
+                            <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: activity.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
+                        </div>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= if length(@activities) == 0 do %>
+        <p class="text-center my-12 text-gray-500 italic text-md">There are no activities yet :/</p>
+        <% end %>
+
+        <div class="p-5 border-t flex justify-end">
+            <div class="btn-wrapper">
+                <%= live_patch "New Activity", to: Routes.activity_index_path(@socket, :new), class: "btn cta" %>
+            </div>
+        </div>
+    </div>
+</div>
