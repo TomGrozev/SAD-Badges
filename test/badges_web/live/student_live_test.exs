@@ -6,7 +6,11 @@ defmodule BadgesWeb.StudentLiveTest do
   alias Badges.Students
 
   @create_attrs %{dob: ~D[2010-04-17], first_name: "some first_name", last_name: "some last_name"}
-  @update_attrs %{dob: ~D[2011-05-18], first_name: "some updated first_name", last_name: "some updated last_name"}
+  @update_attrs %{
+    dob: ~D[2011-05-18],
+    first_name: "some updated first_name",
+    last_name: "some updated last_name"
+  }
   @invalid_attrs %{dob: nil, first_name: nil, last_name: nil}
 
   defp fixture(:student) do

@@ -19,6 +19,7 @@ defmodule Badges.Students do
   """
   def list_students do
     Repo.all(Student)
+    |> add_full_name_field()
   end
 
   @doc """
@@ -35,7 +36,9 @@ defmodule Badges.Students do
       ** (Ecto.NoResultsError)
 
   """
-  def get_student!(id), do: Repo.get!(Student, id)
+  def get_student!(id) do
+    Repo.get!(Student, id) |> add_full_name_field()
+  end
 
   @doc """
   Creates a student.
@@ -100,5 +103,13 @@ defmodule Badges.Students do
   """
   def change_student(%Student{} = student, attrs \\ %{}) do
     Student.changeset(student, attrs)
+  end
+
+  defp add_full_name_field(students) when is_list(students) do
+    Enum.map(students, &add_full_name_field/1)
+  end
+
+  defp add_full_name_field(%Student{} = student) do
+    Map.put(student, :full_name, "#{student.first_name} #{student.last_name}")
   end
 end

@@ -6,8 +6,16 @@ defmodule Badges.StudentsTest do
   describe "students" do
     alias Badges.Students.Student
 
-    @valid_attrs %{dob: ~D[2010-04-17], first_name: "some first_name", last_name: "some last_name"}
-    @update_attrs %{dob: ~D[2011-05-18], first_name: "some updated first_name", last_name: "some updated last_name"}
+    @valid_attrs %{
+      dob: ~D[2010-04-17],
+      first_name: "some first_name",
+      last_name: "some last_name"
+    }
+    @update_attrs %{
+      dob: ~D[2011-05-18],
+      first_name: "some updated first_name",
+      last_name: "some updated last_name"
+    }
     @invalid_attrs %{dob: nil, first_name: nil, last_name: nil}
 
     def student_fixture(attrs \\ %{}) do

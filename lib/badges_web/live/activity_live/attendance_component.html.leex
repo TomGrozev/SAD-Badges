@@ -1,0 +1,19 @@
+<%= f = form_for(@changeset, "#",
+phx_target: @myself,
+phx_change: "save") %>
+
+<div class="flex justify-between items-center p-6">
+    <p class="text-lg"><%= @attendance.student.first_name %> <%= @attendance.student.last_name %></p>
+
+    <div class="w-64">
+        <div class="flex justify-center space-x-6">
+            <%= radio_button_label f, :status, "present", state_id: @id, class: "inline-flex items-center space-x-2", class_radio: "form-radio h-5 w-5" %>
+            <%= radio_button_label f, :status, "absent", state_id: @id, class: "inline-flex items-center space-x-2", class_radio: "form-radio h-5 w-5" %>
+        </div>
+
+        <%= if Ecto.Changeset.get_field(@changeset, :status) == "absent" do %>
+            <%= text_input f, :reason, placeholder: "Reason", id: "attendance_#{@id}_reason", name: "attendance_#{@id}[reason]", class: "form-input mt-4", phx_debounce: "blur" %>
+        <% end %>
+    </div>
+</div>
+</form>

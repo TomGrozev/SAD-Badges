@@ -26,7 +26,6 @@ defmodule BadgesWeb.Router do
     live "/students/:id", StudentLive.Show, :show
     live "/students/:id/show/edit", StudentLive.Show, :edit
 
-
     live "/teachers", TeacherLive.Index, :index
     live "/teachers/new", TeacherLive.Index, :new
     live "/teachers/:id/edit", TeacherLive.Index, :edit
@@ -34,12 +33,21 @@ defmodule BadgesWeb.Router do
     live "/teachers/:id", TeacherLive.Show, :show
     live "/teachers/:id/show/edit", TeacherLive.Show, :edit
 
+    live "/activities", ActivityLive.Index, :index
+    live "/activities/new", ActivityLive.Index, :new
+    live "/activities/:id/edit", ActivityLive.Index, :edit
+
+    live "/activities/:id", ActivityLive.Show, :show
+    live "/activities/:id/show/edit", ActivityLive.Show, :edit
+    live "/activities/:id/attendance", ActivityLive.Attendance, :edit
+
     live "/tests", TestLive.Index, :index
     live "/tests/new", TestLive.Index, :new
     live "/tests/:id/edit", TestLive.Index, :edit
 
     live "/tests/:id", TestLive.Show, :show
-    live "/tests/:id/show/edit", TestLive.Show, :edit  end
+    live "/tests/:id/show/edit", TestLive.Show, :edit
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", BadgesWeb do

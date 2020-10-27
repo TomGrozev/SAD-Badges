@@ -7,6 +7,8 @@ defmodule Badges.Students.Student do
     field :first_name, :string
     field :last_name, :string
 
+    has_many :attendances, Badges.Students.Student
+
     timestamps()
   end
 

@@ -9,6 +9,5 @@ defmodule Badges.Repo.Migrations.CreateStudents do
 
       timestamps()
     end
-
   end
 end

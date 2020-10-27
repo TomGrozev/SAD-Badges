@@ -7,6 +7,5 @@ defmodule Badges.Repo.Migrations.CreateTests do
 
       timestamps()
     end
-
   end
 end
