@@ -26,6 +26,13 @@ defmodule BadgesWeb.Router do
     live "/students/:id", StudentLive.Show, :show
     live "/students/:id/show/edit", StudentLive.Show, :edit
 
+    live "/groups", GroupLive.Index, :index
+    live "/groups/new", GroupLive.Index, :new
+    live "/groups/:id/edit", GroupLive.Index, :edit
+
+    live "/groups/:id", GroupLive.Show, :show
+    live "/groups/:id/show/edit", GroupLive.Show, :edit
+
     live "/teachers", TeacherLive.Index, :index
     live "/teachers/new", TeacherLive.Index, :new
     live "/teachers/:id/edit", TeacherLive.Index, :edit
@@ -43,10 +50,32 @@ defmodule BadgesWeb.Router do
 
     live "/tests", TestLive.Index, :index
     live "/tests/new", TestLive.Index, :new
-    live "/tests/:id/edit", TestLive.Index, :edit
+    live "/tests/:test_id/edit", TestLive.Index, :edit
 
-    live "/tests/:id", TestLive.Show, :show
-    live "/tests/:id/show/edit", TestLive.Show, :edit
+    live "/tests/:test_id", TestLive.Show, :show
+    live "/tests/:test_id/show/edit", TestLive.Show, :edit
+
+    live "/tests/:test_id/topics", TestLive.TopicLive.Index, :index
+    live "/tests/:test_id/topics/new", TestLive.TopicLive.Index, :new
+    live "/tests/:test_id/topics/:topic_id/edit", TestLive.TopicLive.Index, :edit
+
+    live "/tests/:test_id/topics/:topic_id", TestLive.TopicLive.Show, :show
+    live "/tests/:test_id/topics/:topic_id/show/edit", TestLive.TopicLive.Show, :edit
+
+    live "/tests/:test_id/topics/:topic_id/parts", TestLive.TopicLive.PartLive.Index, :index
+    live "/tests/:test_id/topics/:topic_id/parts/new", TestLive.TopicLive.PartLive.Index, :new
+
+    live "/tests/:test_id/topics/:topic_id/parts/:part_id/edit",
+         TestLive.TopicLive.PartLive.Index,
+         :edit
+
+    live "/tests/:test_id/topics/:topic_id/parts/:part_id",
+         TestLive.TopicLive.PartLive.Show,
+         :show
+
+    live "/tests/:test_id/topics/:topic_id/parts/:part_id/show/edit",
+         TestLive.TopicLive.PartLive.Show,
+         :edit
   end
 
   # Other scopes may use custom stacks.

@@ -25,6 +25,12 @@
             <%= date_select f, :dob %>
             <%= error_tag f, :dob %>
         </div>
+
+        <div class="form-control">
+            <%= label f, :group %>
+            <%= select f, :group_id, Enum.map(@groups, &{&1.name, &1.id}), class: "form-select", phx_debounce: "blur" %>
+            <%= error_tag f, :group_id %>
+        </div>
     </div>
 </div>
 

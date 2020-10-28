@@ -43,4 +43,8 @@ defmodule BadgesWeb.StudentLive.Index do
   defp list_students do
     Students.list_students()
   end
+
+  defp get_group_name(%Ecto.Association.NotLoaded{}), do: get_group_name(nil)
+  defp get_group_name(nil), do: "None"
+  defp get_group_name(group), do: group.name
 end

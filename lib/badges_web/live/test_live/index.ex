@@ -11,10 +11,11 @@ defmodule BadgesWeb.TestLive.Index do
 
   @impl true
   def handle_params(params, _url, socket) do
+    IO.inspect(params)
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
+  defp apply_action(socket, :edit, %{"test_id" => id}) do
     socket
     |> assign(:page_title, "Edit Test")
     |> assign(:test, Tests.get_test!(id))

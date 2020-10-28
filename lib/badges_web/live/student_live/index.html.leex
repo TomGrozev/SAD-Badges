@@ -17,6 +17,7 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>DOB</th>
+        <th>Group</th>
 
         <th></th>
       </tr>
@@ -35,6 +36,10 @@
         <td>
           <span>DOB</span>
           <%= student.dob %>
+        </td>
+        <td>
+          <span>Group</span>
+          <%= get_group_name(student.group) %>
         </td>
 
         <td>

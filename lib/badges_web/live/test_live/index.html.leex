@@ -15,8 +15,9 @@
         <table class="table-card responsive">
             <thead>
             <tr>
-                      <th>Planned date</th>
-                
+                <th>Name</th>
+                <th>Planned date</th>
+
 
                 <th></th>
             </tr>
@@ -24,13 +25,15 @@
             <tbody id="tests">
                 <%= for test <- @tests do %>
                 <tr id="test-<%= test.id %>">
-                            <td><%= test.planned_date %></td>
-                    
+                    <td><%= test.name %></td>
+                    <td><%= test.planned_date %></td>
+
 
                     <td>
                         <div class="flex space-x-2 justify-center">
                             <div class="btn-wrapper"><%= live_redirect "Show", to: Routes.test_show_path(@socket, :show, test), class: "btn-outline" %></div>
                             <div class="btn-wrapper"><%= live_patch "Edit", to: Routes.test_index_path(@socket, :edit, test), class: "btn info" %></div>
+                            <div class="btn-wrapper"><%= live_patch "Topics", to: Routes.test_topic_index_path(@socket, :index, test), class: "btn warning" %></div>
                             <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: test.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
                         </div>
                     </td>

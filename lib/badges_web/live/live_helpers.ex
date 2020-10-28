@@ -53,7 +53,7 @@ defmodule BadgesWeb.LiveHelpers do
   end
 
   def field_id(opts, form, field, value \\ false) do
-    id = get_prefix(form, opts) <> (if value, do: "_" <> value, else: "")
+    id = get_prefix(form, opts) <> "_#{field}" <> if value, do: "_" <> value, else: ""
     Keyword.put(opts, :id, id)
   end
 

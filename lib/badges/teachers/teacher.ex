@@ -6,6 +6,8 @@ defmodule Badges.Teachers.Teacher do
     field :first_name, :string
     field :last_name, :string
 
+    has_many :tests, Badges.Tests.Test
+
     timestamps()
   end
 

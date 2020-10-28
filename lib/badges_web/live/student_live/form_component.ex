@@ -4,6 +4,11 @@ defmodule BadgesWeb.StudentLive.FormComponent do
   alias Badges.Students
 
   @impl true
+  def mount(socket) do
+    {:ok, assign(socket, :groups, Students.list_groups())}
+  end
+
+  @impl true
   def update(%{student: student} = assigns, socket) do
     changeset = Students.change_student(student)
 

@@ -1,0 +1,58 @@
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, BadgesWeb.TestLive.TopicLive.PartLive.FormComponent,
+    id: @part.id || :new,
+    title: @page_title,
+    action: @live_action,
+    test_id: @test_id,
+    topic: @topic,
+    part: @part,
+    return_to: Routes.test_topic_part_index_path(@socket, :index, @test_id, @topic) %>
+<% end %>
+
+
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3"> Listing Parts for <span class="text-brand"><%= @topic.name %></span></h1>
+
+    <div class="inline-block bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <table class="table-card responsive">
+            <thead>
+            <tr>
+                      <th>Name</th>
+                      <th>Required</th>
+
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="parts">
+                <%= for part <- @parts do %>
+                <tr id="part-<%= part.id %>">
+                            <td><%= part.name %></td>
+                            <td><%= part.required %></td>
+
+
+                    <td>
+                        <div class="flex space-x-2 justify-center">
+                            <div class="btn-wrapper"><%= live_redirect "Show", to: Routes.test_topic_part_show_path(@socket, :show, @test_id, @topic, part), class: "btn-outline" %></div>
+                            <div class="btn-wrapper"><%= live_patch "Edit", to: Routes.test_topic_part_index_path(@socket, :edit, @test_id, @topic, part), class: "btn info" %></div>
+                            <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: part.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
+                        </div>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= if length(@parts) == 0 do %>
+        <p class="text-center my-12 text-gray-500 italic text-md">There are no parts yet :/</p>
+        <% end %>
+
+        <div class="p-5 border-t flex justify-end space-x-4">
+            <div class="btn-wrapper">
+                <%= live_patch "Back", to: Routes.test_topic_index_path(@socket, :index, @test_id), class: "btn info" %>
+            </div>
+            <div class="btn-wrapper">
+                <%= live_patch "New Part", to: Routes.test_topic_part_index_path(@socket, :new, @test_id, @topic), class: "btn cta" %>
+            </div>
+        </div>
+    </div>
+</div>

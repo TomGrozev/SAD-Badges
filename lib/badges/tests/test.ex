@@ -3,7 +3,11 @@ defmodule Badges.Tests.Test do
   import Ecto.Changeset
 
   schema "tests" do
+    field :name, :string
     field :planned_date, :utc_datetime
+
+    belongs_to :teacher, Badges.Teachers.Teacher
+    has_many :topics, Badges.Tests.Topic
 
     timestamps()
   end
@@ -11,6 +15,7 @@ defmodule Badges.Tests.Test do
   @doc false
   def changeset(test, attrs) do
     test
-    |> cast(attrs, [:planned_date])
+    |> cast(attrs, [:name, :planned_date])
+    |> validate_required([:name])
   end
 end

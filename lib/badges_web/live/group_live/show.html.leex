@@ -1,0 +1,30 @@
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3">Show Group</h1>
+
+
+    <%= if @live_action in [:edit] do %>
+        <%= live_modal @socket, BadgesWeb.GroupLive.FormComponent,
+            id: @group.id,
+            title: @page_title,
+            action: @live_action,
+            group: @group,
+            return_to: Routes.group_show_path(@socket, :show, @group) %>
+    <% end %>
+
+
+    <div class="bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <ul class="p-6">
+            
+                <li class="mb-2">
+                    <strong class="mr-2">Name:</strong>
+                    <%= @group.name %>
+                </li>
+            
+        </ul>
+
+        <div class="modal-footer">
+            <div class="btn-wrapper"><span><%= live_patch "Edit", to: Routes.group_show_path(@socket, :edit, @group), class: "btn cta" %></span></div>
+            <div class="btn-wrapper"><span><%= live_redirect "Back", to: Routes.group_index_path(@socket, :index), class: "btn info" %></span></div>
+        </div>
+    </div>
+</div>
