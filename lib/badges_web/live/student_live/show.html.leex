@@ -29,6 +29,11 @@
           <%= @student.dob %>
         </li>
 
+        <li class="mb-2">
+          <strong class="mr-2">Group:</strong>
+          <%= @student.group.name %>
+        </li>
+
       </ul>
 
       <%= unless Enum.empty?(@student.tests) do %>
