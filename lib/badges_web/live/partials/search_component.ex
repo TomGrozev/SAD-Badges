@@ -16,10 +16,23 @@ defmodule BadgesWeb.Partials.SearchComponent do
   end
 
   def handle_event("search", %{"q" => query}, socket) do
-    send_update(BadgesWeb.ActivityLive.FormCompleteComponent,
-      id: :new,
-      query: {socket.assigns.id, query}
-    )
+    payload = {socket.assigns.id, query}
+    case socket.assigns.target do
+      :self ->
+        send(self(), {:query, payload})
+
+      {target, target_id} ->
+        send_update(target,
+          id: target_id,
+          query: payload
+        )
+
+      target ->
+        send_update(target,
+          id: :new,
+          query: payload
+        )
+    end
 
     {:noreply, socket}
   end

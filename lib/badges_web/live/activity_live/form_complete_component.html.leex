@@ -5,6 +5,7 @@
         <p class="mt-6 mb-0">Select a student to mark an item as complete.</p>
         <%= live_component @socket, BadgesWeb.Partials.SearchComponent,
             id: :students,
+            target: __MODULE__,
             search: "Students" %>
         <div class="pt-3">
             <%= for %{id: id, first_name: first_name, last_name: last_name, group: group} <- @students do %>
@@ -21,6 +22,7 @@
         <p class="mt-8">Select an item to mark as complete.</p>
         <%= live_component @socket, BadgesWeb.Partials.SearchComponent,
             id: :tests,
+            target: __MODULE__,
             search: "Tests, Topics or Parts" %>
         <div class="pt-3">
             <%= for {id, name, type} <- @items do %>

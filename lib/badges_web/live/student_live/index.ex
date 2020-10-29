@@ -33,6 +33,13 @@ defmodule BadgesWeb.StudentLive.Index do
   end
 
   @impl true
+  def handle_info({:query, {:students, query}}, socket) do
+    students = if query == "", do: list_students(), else: Students.search_students(query)
+
+    {:noreply, assign(socket, :students, students)}
+  end
+
+  @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     student = Students.get_student!(id)
     {:ok, _} = Students.delete_student(student)

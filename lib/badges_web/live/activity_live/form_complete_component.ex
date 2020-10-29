@@ -7,10 +7,6 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
 
   @impl true
   def mount(socket) do
-    if connected?(socket) do
-      Phoenix.PubSub.subscribe(Badges.PubSub, "search_results")
-    end
-
     {:ok,
      socket
      |> assign(:items, [])
