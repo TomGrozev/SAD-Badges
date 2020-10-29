@@ -7,6 +7,7 @@ defmodule Badges.Tests.Topic do
 
     belongs_to :test, Badges.Tests.Test
     has_many :parts, Badges.Tests.Part
+    many_to_many :students, Badges.Students.Student, join_through: Badges.Students.TopicsCompleted
 
     timestamps()
   end

@@ -11,7 +11,7 @@ defmodule BadgesWeb.ActivityLive.Attendance do
   end
 
   @impl true
-  def handle_params(%{"id" => id}, _, socket) do
+  def handle_params(%{"activity_id" => id}, _, socket) do
     activity = Activities.get_activity!(id)
 
     {:noreply,

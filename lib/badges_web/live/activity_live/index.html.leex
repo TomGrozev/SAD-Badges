@@ -15,8 +15,8 @@
         <table class="table-card responsive">
             <thead>
             <tr>
-                      <th>Datetime</th>
-                      <th>Name</th>
+                <th>Name</th>
+                <th>Datetime</th>
 
 
                 <th></th>
@@ -25,8 +25,8 @@
             <tbody id="activities">
                 <%= for activity <- @activities do %>
                 <tr id="activity-<%= activity.id %>">
-                            <td><%= activity.datetime %></td>
-                            <td><%= activity.name %></td>
+                    <td><%= activity.name %></td>
+                    <td><%= activity.datetime %></td>
 
 
                     <td>
@@ -34,6 +34,7 @@
                             <div class="btn-wrapper"><%= live_redirect "Show", to: Routes.activity_show_path(@socket, :show, activity), class: "btn-outline" %></div>
                             <div class="btn-wrapper"><%= live_patch "Edit", to: Routes.activity_index_path(@socket, :edit, activity), class: "btn info" %></div>
                             <div class="btn-wrapper"><%= live_patch "Mark Attendance", to: Routes.activity_attendance_path(@socket, :edit, activity), class: "btn warning" %></div>
+                            <div class="btn-wrapper"><%= live_patch "Completed Items", to: Routes.activity_complete_path(@socket, :index, activity), class: "btn success" %></div>
                             <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: activity.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
                         </div>
                     </td>

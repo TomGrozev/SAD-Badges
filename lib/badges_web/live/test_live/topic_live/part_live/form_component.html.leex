@@ -9,19 +9,22 @@ phx_submit: "save" %>
 
   <div class="mt-2">
 
-    
+
       <div class="form-control">
         <%= label f, :name %>
         <%= text_input f, :name %>
         <%= error_tag f, :name %>
       </div>
-    
-      <div class="form-control">
-        <%= label f, :required %>
-        <%= checkbox f, :required %>
-        <%= error_tag f, :required %>
+
+      <div class="mt-4">
+          <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+              <%= checkbox f, :required, class: "toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" %>
+              <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+          </div>
+          <%= label f, :required, class: "test-xs text-gray-700 inline-block" %>
+          <%= error_tag f, :required %>
       </div>
-    
+
   </div>
 </div>
 

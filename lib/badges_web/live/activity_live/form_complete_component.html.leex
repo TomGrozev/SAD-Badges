@@ -1,0 +1,48 @@
+<div class="bg-white px-4 pt-5 pb-8 sm:p-6">
+    <h3 class="text-lg leading-6 font-semibold text-gray-900" id="modal-headline"><%= @title %></h3>
+
+    <div class="mt-2">
+        <p class="mt-6 mb-0">Select a student to mark an item as complete.</p>
+        <%= live_component @socket, BadgesWeb.Partials.SearchComponent,
+            id: :students,
+            search: "Students" %>
+        <div class="pt-3">
+            <%= for %{id: id, first_name: first_name, last_name: last_name, group: group} <- @students do %>
+            <a href="#" phx-target="<%= @myself %>" phx-click="set" phx-value-student="<%= id %>"
+               class="flex w-full justify-start text-gray-700 rounded-md px-2 py-2 my-2 <%= if @student == to_string(id),
+                        do: "bg-green-100 border-green-400 cursor-auto",
+                        else: "hover:text-blue-400 hover:bg-blue-100" %>" <%= if @student == to_string(id), do: "disabled" %>>
+                <div class="flex-grow font-medium text-left px-4"><%= first_name %> <%= last_name %></div>
+                <div class="text-sm font-normal text-gray-500 tracking-wide"><%= group.name %></div>
+            </a>
+            <% end %>
+        </div>
+
+        <p class="mt-8">Select an item to mark as complete.</p>
+        <%= live_component @socket, BadgesWeb.Partials.SearchComponent,
+            id: :tests,
+            search: "Tests, Topics or Parts" %>
+        <div class="pt-3">
+            <%= for {id, name, type} <- @items do %>
+            <% key = "#{type}_#{id}" %>
+            <a href="#" phx-target="<%= @myself %>" phx-click="set" phx-value-item="<%= key %>"
+               class="flex w-full justify-start text-gray-700 rounded-md px-2 py-2 my-2 <%= if @item == key,
+                        do: "bg-green-100 border-green-400 cursor-auto",
+                        else: "hover:text-blue-400 hover:bg-blue-100" %>" <%= if @item == key, do: "disabled" %>>
+                <div class="flex-grow font-medium text-left px-4"><%= name %></div>
+                <div class="text-sm font-normal text-gray-500 tracking-wide"><%= humanize type %></div>
+            </a>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-footer">
+    <div class="btn-wrapper">
+        <%= submit "Mark as Complete", class: "btn", phx_target: @myself, phx_click: "add", phx_disable_with: "Saving..." %>
+    </div>
+    <div class="btn-wrapper">
+        <%= live_patch "Cancel", to: @return_to, class: "btn-outline" %>
+    </div>
+</div>

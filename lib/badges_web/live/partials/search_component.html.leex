@@ -1,0 +1,5 @@
+<form phx-change="search" phx-target="<%= @myself %>">
+    <div class="form-control">
+        <input type="text" name="q" value="<%= @query %>" placeholder="Search for <%= @search %>" autocomplete="off" phx-debounce="300" />
+    </div>
+</form>

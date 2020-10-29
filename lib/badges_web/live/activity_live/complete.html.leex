@@ -1,0 +1,55 @@
+<%= if @live_action in [:new, :edit] do %>
+<%= live_modal @socket, BadgesWeb.ActivityLive.FormCompleteComponent,
+    id: :new,
+    title: @page_title,
+    action: @live_action,
+    activity: @activity,
+    complete: @completed,
+    return_to: Routes.activity_complete_path(@socket, :index, @activity) %>
+<% end %>
+
+
+<div>
+    <h1 class="text-2xl leading-6 font-bold text-gray-800 my-3"> Listing Complete Items for <strong class="text-brand"><%= @activity.name %></strong> </h1>
+
+    <div class="inline-block bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
+        <table class="table-card responsive">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Datetime</th>
+                <th>Student</th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="complete">
+            <%= for {completed, type} <- @complete do %>
+            <tr id="completed-<%= type %>-<%= completed.id %>">
+                <td><%= Map.get(completed, type).name %></td>
+                <td><%= humanize type %></td>
+                <td><%= completed.inserted_at %></td>
+                <td><%= completed.student.first_name %> <%= completed.student.last_name %></td>
+
+
+                <td>
+                    <div class="flex space-x-2 justify-center">
+                        <div class="btn-wrapper"><%= link "Delete", to: "#", phx_click: "delete", phx_value_type: type, phx_value_id: completed.id, data: [confirm: "Are you sure?"], class: "btn danger" %></div>
+                    </div>
+                </td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+        <%= if length(@complete) == 0 do %>
+        <p class="text-center my-12 text-gray-500 italic text-md">There are no completed items yet :/</p>
+        <% end %>
+
+        <div class="p-5 border-t flex justify-end">
+            <div class="btn-wrapper">
+                <%= live_patch "Mark Item as Complete", to: Routes.activity_complete_path(@socket, :new, @activity), class: "btn cta" %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,6 +22,25 @@ defmodule Badges.Students do
   end
 
   @doc """
+  Search for students
+
+  Can search by first_name and/or last_name
+  """
+  def search_students(query) do
+    where(Student,
+      fragment(
+        "to_tsvector('english', first_name || ' ' || coalesce(last_name, ' ')) @@ to_tsquery(?)",
+        ^prefix_search(query)
+      )
+    )
+    |> preload([:group])
+    |> select([:id, :first_name, :last_name, :group_id])
+    |> Repo.all()
+  end
+
+  defp prefix_search(term), do: String.replace(term, ~r/\W/u, "") <> ":*"
+
+  @doc """
   Gets a single student.
 
   Raises `Ecto.NoResultsError` if the Student does not exist.

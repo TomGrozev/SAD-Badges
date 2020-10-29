@@ -14,7 +14,7 @@ defmodule BadgesWeb.ActivityLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
+  defp apply_action(socket, :edit, %{"activity_id" => id}) do
     socket
     |> assign(:page_title, "Edit Activity")
     |> assign(:activity, Activities.get_activity!(id))

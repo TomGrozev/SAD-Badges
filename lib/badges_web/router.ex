@@ -42,11 +42,14 @@ defmodule BadgesWeb.Router do
 
     live "/activities", ActivityLive.Index, :index
     live "/activities/new", ActivityLive.Index, :new
-    live "/activities/:id/edit", ActivityLive.Index, :edit
+    live "/activities/:activity_id/edit", ActivityLive.Index, :edit
 
-    live "/activities/:id", ActivityLive.Show, :show
-    live "/activities/:id/show/edit", ActivityLive.Show, :edit
-    live "/activities/:id/attendance", ActivityLive.Attendance, :edit
+    live "/activities/:activity_id", ActivityLive.Show, :show
+    live "/activities/:activity_id/show/edit", ActivityLive.Show, :edit
+    live "/activities/:activity_id/attendance", ActivityLive.Attendance, :edit
+
+    live "/activities/:activity_id/complete", ActivityLive.Complete, :index
+    live "/activities/:activity_id/complete/new", ActivityLive.Complete, :new
 
     live "/tests", TestLive.Index, :index
     live "/tests/new", TestLive.Index, :new

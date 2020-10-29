@@ -7,6 +7,7 @@ defmodule Badges.Tests.Part do
     field :required, :boolean, default: false
 
     belongs_to :topic, Badges.Tests.Topic
+    many_to_many :students, Badges.Students.Student, join_through: Badges.Students.PartsCompleted
 
     timestamps()
   end

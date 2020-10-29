@@ -25,6 +25,7 @@
 
         <div class="modal-footer">
             <div class="btn-wrapper"><span><%= live_patch "Edit", to: Routes.test_topic_show_path(@socket, :edit, @test_id, @topic), class: "btn cta" %></span></div>
+            <div class="btn-wrapper"><span><%= live_patch "Parts", to: Routes.test_topic_part_index_path(@socket, :index, @test_id, @topic), class: "btn warning" %></span></div>
             <div class="btn-wrapper"><span><%= live_redirect "Back", to: Routes.test_topic_index_path(@socket, :index, @test_id), class: "btn info" %></span></div>
         </div>
     </div>

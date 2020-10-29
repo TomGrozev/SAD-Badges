@@ -9,6 +9,9 @@ defmodule Badges.Students.Student do
 
     has_many :attendances, Badges.Students.Student
     belongs_to :group, Badges.Students.Group
+    many_to_many :tests, Badges.Tests.Test, join_through: Badges.Students.TestsCompleted
+    many_to_many :topics, Badges.Tests.Topic, join_through: Badges.Students.TopicsCompleted
+    many_to_many :parts, Badges.Tests.Part, join_through: Badges.Students.PartsCompleted
 
     timestamps()
   end

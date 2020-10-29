@@ -142,4 +142,19 @@ defmodule Badges.Activities do
       changeset
     end
   end
+
+  alias Badges.Students.{TestsCompleted, TopicsCompleted, PartsCompleted}
+
+  @doc """
+  Lists all completed tests, topics and parts at an activity
+  """
+  def list_completed(%Activity{} = activity) do
+    tests = Repo.all(from t in TestsCompleted, where: t.activity_id == ^activity.id, join: test in assoc(t, :test), join: student in assoc(t, :student), preload: [test: test, student: student], select: {t, :test})
+
+    topics = Repo.all(from t in TopicsCompleted, where: t.activity_id == ^activity.id, join: topic in assoc(t, :topic), join: student in assoc(t, :student), preload: [topic: topic, student: student], select: {t, :topic})
+
+    parts = Repo.all(from p in PartsCompleted, where: p.activity_id == ^activity.id, join: part in assoc(p, :part), join: student in assoc(p, :student), preload: [part: part, student: student], select: {p, :part})
+
+    Enum.concat([tests, topics, parts])
+  end
 end

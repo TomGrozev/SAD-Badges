@@ -28,7 +28,12 @@
                 <%= for part <- @parts do %>
                 <tr id="part-<%= part.id %>">
                             <td><%= part.name %></td>
-                            <td><%= part.required %></td>
+                            <td>
+                                <div class="relative inline-block px-3 py-1 font-semibold leading-tight">
+                                    <div class="absolute inset-0 rounded-full <%= if part.required, do: "bg-success-light", else: "bg-danger-light" %>"></div>
+                                    <div class="relative text-xs <%= if part.required, do: "text-success-dark", else: "text-danger-dark" %>"><%= humanize part.required %></div>
+                                </div>
+                            </td>
 
 
                     <td>

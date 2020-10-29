@@ -14,16 +14,17 @@
 
     <div class="bg-white min-w-full max-w-2xl rounded-lg shadow-md mt-4">
         <ul class="p-6">
-            
+
                 <li class="mb-2">
                     <strong class="mr-2">Planned date:</strong>
                     <%= @test.planned_date %>
                 </li>
-            
+
         </ul>
 
         <div class="modal-footer">
             <div class="btn-wrapper"><span><%= live_patch "Edit", to: Routes.test_show_path(@socket, :edit, @test), class: "btn cta" %></span></div>
+            <div class="btn-wrapper"><span><%= live_patch "Topics", to: Routes.test_topic_index_path(@socket, :index, @test), class: "btn warning" %></span></div>
             <div class="btn-wrapper"><span><%= live_redirect "Back", to: Routes.test_index_path(@socket, :index), class: "btn info" %></span></div>
         </div>
     </div>
