@@ -216,7 +216,7 @@ defmodule Badges.Tests do
   def list_parts(%Topic{} = topic) do
     Repo.all(
       from part in Part,
-      where: part.topic_id == ^topic.id
+        where: part.topic_id == ^topic.id
     )
   end
 
@@ -307,9 +307,21 @@ defmodule Badges.Tests do
   """
   def search_all(query) do
     # Could be done better but move fast and break things sooooooooooo :/
-    tests_query = from t in Test, where: ilike(t.name, ^"%#{query}%"), select: {t.id, t.name, "test"}
-    topics_query = from t in Topic, where: ilike(t.name, ^"%#{query}%"), select: {t.id, t.name, "topic"}, union: ^tests_query
-    parts_query = from p in Part, where: ilike(p.name, ^"%#{query}%"), select: {p.id, p.name, "part"}, union: ^topics_query
+    tests_query =
+      from t in Test, where: ilike(t.name, ^"%#{query}%"), select: {t.id, t.name, "test"}
+
+    topics_query =
+      from t in Topic,
+        where: ilike(t.name, ^"%#{query}%"),
+        select: {t.id, t.name, "topic"},
+        union: ^tests_query
+
+    parts_query =
+      from p in Part,
+        where: ilike(p.name, ^"%#{query}%"),
+        select: {p.id, p.name, "part"},
+        union: ^topics_query
+
     Repo.all(parts_query)
   end
 
@@ -321,18 +333,33 @@ defmodule Badges.Tests do
   @doc """
   Marks a test, topic or part as complete
   """
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "test", t_id) when not is_nil(a_id) and not is_nil(s_id) do
-    TestsCompleted.changeset(%TestsCompleted{}, %{activity_id: a_id, test_id: t_id, student_id: s_id})
+  def mark_complete(%Activity{id: a_id} = activity, s_id, "test", t_id)
+      when not is_nil(a_id) and not is_nil(s_id) do
+    TestsCompleted.changeset(%TestsCompleted{}, %{
+      activity_id: a_id,
+      test_id: t_id,
+      student_id: s_id
+    })
     |> Repo.insert()
   end
 
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "topic", t_id) when not is_nil(a_id) and not is_nil(s_id) do
-    TopicsCompleted.changeset(%TopicsCompleted{}, %{activity_id: a_id, topic_id: t_id, student_id: s_id})
+  def mark_complete(%Activity{id: a_id} = activity, s_id, "topic", t_id)
+      when not is_nil(a_id) and not is_nil(s_id) do
+    TopicsCompleted.changeset(%TopicsCompleted{}, %{
+      activity_id: a_id,
+      topic_id: t_id,
+      student_id: s_id
+    })
     |> Repo.insert()
   end
 
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "part", t_id) when not is_nil(a_id) and not is_nil(s_id) do
-    PartsCompleted.changeset(%PartsCompleted{}, %{activity_id: a_id, part_id: t_id, student_id: s_id})
+  def mark_complete(%Activity{id: a_id} = activity, s_id, "part", t_id)
+      when not is_nil(a_id) and not is_nil(s_id) do
+    PartsCompleted.changeset(%PartsCompleted{}, %{
+      activity_id: a_id,
+      part_id: t_id,
+      student_id: s_id
+    })
     |> Repo.insert()
   end
 
@@ -351,7 +378,8 @@ defmodule Badges.Tests do
   @doc """
   Deletes a completed test, topic or part with id
   """
-  def delete_completed(%mod{} = completed) when mod in [TestsCompleted, TopicsCompleted, PartsCompleted] do
+  def delete_completed(%mod{} = completed)
+      when mod in [TestsCompleted, TopicsCompleted, PartsCompleted] do
     Repo.delete(completed)
   end
 end

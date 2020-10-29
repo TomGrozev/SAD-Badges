@@ -9,11 +9,11 @@ defmodule BadgesWeb.TestLive.TopicLive.PartLive.Index do
     topic = Tests.get_topic!(topic_id)
 
     {:ok,
-      socket
-      |> assign(:test_id, test_id)
-      |> assign(:topic, topic)
-      |> assign(:parts, list_parts(topic))}
-end
+     socket
+     |> assign(:test_id, test_id)
+     |> assign(:topic, topic)
+     |> assign(:parts, list_parts(topic))}
+  end
 
   @impl true
   def handle_params(params, _url, socket) do

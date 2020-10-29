@@ -9,6 +9,5 @@ defmodule Badges.Repo.Migrations.CreateTopicsCompleted do
 
       timestamps()
     end
-
   end
 end

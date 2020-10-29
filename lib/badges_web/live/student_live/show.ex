@@ -10,10 +10,15 @@ defmodule BadgesWeb.StudentLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    student =
+      Students.get_student!(id)
+      |> Students.load_completed()
+      |> IO.inspect()
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:student, Students.get_student!(id))}
+     |> assign(:student, student)}
   end
 
   defp page_title(:show), do: "Show Student"

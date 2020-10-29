@@ -10,10 +10,10 @@ defmodule BadgesWeb.ActivityLive.Complete do
     activity = Activities.get_activity!(activity_id)
 
     {:ok,
-      socket
-      |> assign(:activity, activity)
-      |> assign(:complete, list_complete(activity))}
-end
+     socket
+     |> assign(:activity, activity)
+     |> assign(:complete, list_complete(activity))}
+  end
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -33,7 +33,8 @@ end
   end
 
   @impl true
-  def handle_event("delete", %{"id" => id, "type" => type}, socket) when type in ["test", "topic", "part"] do
+  def handle_event("delete", %{"id" => id, "type" => type}, socket)
+      when type in ["test", "topic", "part"] do
     item =
       String.to_atom(type)
       |> Tests.get_completed!(id)
@@ -46,8 +47,8 @@ end
   @impl true
   def handle_event("delete", _params, socket) do
     {:noreply,
-        socket
-        |> put_flash(:danger, "Error deleting completed item.")}
+     socket
+     |> put_flash(:danger, "Error deleting completed item.")}
   end
 
   defp list_complete(activity) do

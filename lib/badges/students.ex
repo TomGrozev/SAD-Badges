@@ -27,7 +27,8 @@ defmodule Badges.Students do
   Can search by first_name and/or last_name
   """
   def search_students(query) do
-    where(Student,
+    where(
+      Student,
       fragment(
         "to_tsvector('english', first_name || ' ' || coalesce(last_name, ' ')) @@ to_tsquery(?)",
         ^prefix_search(query)
@@ -57,6 +58,13 @@ defmodule Badges.Students do
   def get_student!(id) do
     Repo.get!(Student, id)
     |> Repo.preload(:group)
+  end
+
+  @doc """
+  Loads completed tests, topics and parts onto student struct
+  """
+  def load_completed(%Student{} = student) do
+    Repo.preload(student, [:tests, :topics, :parts])
   end
 
   @doc """

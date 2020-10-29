@@ -6,9 +6,9 @@ defmodule BadgesWeb.TestLive.TopicLive.PartLive.Show do
   @impl true
   def mount(%{"test_id" => test_id, "topic_id" => topic_id}, _session, socket) do
     {:ok,
-      socket
-      |> assign(:test_id, test_id)
-      |> assign(:topic_id, topic_id)}
+     socket
+     |> assign(:test_id, test_id)
+     |> assign(:topic_id, topic_id)}
   end
 
   @impl true

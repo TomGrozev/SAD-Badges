@@ -12,11 +12,11 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
     end
 
     {:ok,
-      socket
-      |> assign(:items, [])
-      |> assign(:students, [])
-      |> assign(:item, nil)
-      |> assign(:student, nil)}
+     socket
+     |> assign(:items, [])
+     |> assign(:students, [])
+     |> assign(:item, nil)
+     |> assign(:student, nil)}
   end
 
   @impl true
@@ -36,8 +36,8 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
   @impl true
   def update(assigns, socket) do
     {:ok,
-      socket
-      |> assign(assigns)}
+     socket
+     |> assign(assigns)}
   end
 
   def handle_event("set", %{"student" => id}, socket) do
@@ -50,18 +50,27 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
     {:noreply, assign(socket, :item, id)}
   end
 
-  def handle_event("add", _params, %{assigns: %{student: student_id, item: item_id}} = socket) when is_nil(student_id) or is_nil(item_id) do
-      {:noreply, socket}
+  def handle_event("add", _params, %{assigns: %{student: student_id, item: item_id}} = socket)
+      when is_nil(student_id) or is_nil(item_id) do
+    {:noreply, socket}
   end
 
-  def handle_event("add", _params, %{assigns: %{activity: activity, student: student_id, item: item_id}} = socket) do
+  def handle_event(
+        "add",
+        _params,
+        %{assigns: %{activity: activity, student: student_id, item: item_id}} = socket
+      ) do
     [type, i_id] = String.split(item_id, "_")
+
     case Tests.mark_complete(activity, student_id, type, i_id) do
       {:ok, _test_completed} ->
         {:noreply,
-          socket
-          |> put_flash(:info, Phoenix.HTML.Form.humanize(type) <> " marked as complete successfully")
-          |> push_redirect(to: socket.assigns.return_to)}
+         socket
+         |> put_flash(
+           :info,
+           Phoenix.HTML.Form.humanize(type) <> " marked as complete successfully"
+         )
+         |> push_redirect(to: socket.assigns.return_to)}
 
       # TODO: Fix
       {:error, %Ecto.Changeset{} = changeset} ->

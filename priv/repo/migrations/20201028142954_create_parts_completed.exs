@@ -9,6 +9,5 @@ defmodule Badges.Repo.Migrations.CreatePartsCompleted do
 
       timestamps()
     end
-
   end
 end
