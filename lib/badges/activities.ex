@@ -134,8 +134,6 @@ defmodule Badges.Activities do
   end
 
   defp maybe_clear_reason(changeset) do
-    IO.inspect(Ecto.Changeset.get_field(changeset, :status))
-
     if Ecto.Changeset.get_field(changeset, :status) == "present" do
       Ecto.Changeset.put_change(changeset, :reason, nil)
     else

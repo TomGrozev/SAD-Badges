@@ -13,7 +13,6 @@ defmodule BadgesWeb.StudentLive.Show do
     student =
       Students.get_student!(id)
       |> Students.load_completed()
-      |> IO.inspect()
 
     {:noreply,
      socket

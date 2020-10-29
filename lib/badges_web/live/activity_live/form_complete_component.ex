@@ -1,7 +1,6 @@
 defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
   use BadgesWeb, :live_component
 
-  alias Badges.Activities
   alias Badges.Tests
   alias Badges.Students
 
@@ -36,21 +35,23 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
      |> assign(assigns)}
   end
 
+  @impl true
   def handle_event("set", %{"student" => id}, socket) do
-    IO.inspect(id)
     {:noreply, assign(socket, :student, id)}
   end
 
+  @impl true
   def handle_event("set", %{"item" => id}, socket) do
-    IO.inspect(id)
     {:noreply, assign(socket, :item, id)}
   end
 
+  @impl true
   def handle_event("add", _params, %{assigns: %{student: student_id, item: item_id}} = socket)
       when is_nil(student_id) or is_nil(item_id) do
     {:noreply, socket}
   end
 
+  @impl true
   def handle_event(
         "add",
         _params,

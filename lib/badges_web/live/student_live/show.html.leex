@@ -41,7 +41,7 @@
         <h2 class="text-lg font-bold leading-4">Completed Tests </h2>
         <div class="flex justify-between items-center mt-4">
           <%= for test <- @student.tests do %>
-            <%= link to: Routes.test_show_path(@socket, :show, test.id), class: "relative inline-block px-3 py-1 font-semibold leading-tight" do %>
+            <%= live_patch to: Routes.test_show_path(@socket, :show, test.id), class: "relative inline-block px-3 py-1 font-semibold leading-tight" do %>
               <div class="absolute inset-0 rounded-full bg-info-light"></div>
               <div class="relative text-xs text-info-dark"><%= humanize test.name %></div>
             <% end %>
@@ -55,7 +55,7 @@
         <h2 class="text-lg font-bold leading-4">Completed Topics </h2>
         <div class="flex justify-between items-center mt-4">
           <%= for topic <- @student.topics do %>
-            <%= link to: Routes.test_topic_show_path(@socket, :show, topic.test_id, topic.id), class: "relative inline-block px-3 py-1 font-semibold leading-tight" do %>
+            <%= live_patch to: Routes.test_topic_show_path(@socket, :show, topic.test_id, topic.id), class: "relative inline-block px-3 py-1 font-semibold leading-tight" do %>
               <div class="absolute inset-0 rounded-full bg-info-light"></div>
               <div class="relative text-xs text-info-dark"><%= humanize topic.name %></div>
             <% end %>

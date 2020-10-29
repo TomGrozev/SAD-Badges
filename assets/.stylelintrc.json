@@ -6,7 +6,8 @@
         "extends",
         "tailwind",
         "variants",
-        "screen"
+        "screen",
+        "apply"
       ]
     }],
     "block-no-empty": null
