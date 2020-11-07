@@ -1,0 +1,39 @@
+version: "3"
+services:
+  db:
+    image: postgres:alpine
+    container_name: badges-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=badges_prod
+    networks:
+      - nginx-network
+  admin:
+    image: badges-release
+    container_name: badges-admin
+    build:
+      context: .
+      dockerfile: Dockerfile.run
+    command: migrate
+    networks:
+      - nginx-network
+    depends_on:
+      - db
+  server:
+    image: badges-release
+    container_name: badges-server
+    environment:
+      - PORT=5000
+      - HOST="badges.com"
+    expose:
+      - "5000"
+    command: foreground
+    networks:
+      - nginx-network
+    depends_on:
+      - db
+      - admin
+networks:
+  nginx-network:
+    external: true

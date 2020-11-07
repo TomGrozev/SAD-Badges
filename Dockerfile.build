@@ -1,0 +1,28 @@
+FROM bitwalker/alpine-elixir-phoenix:latest
+
+ENV MIX_ENV prod
+
+ENV SECRET_KEY_BASE 6ujW3K4Znhq8N4XGzJ2Dd7oOv6hcbgTnSTsf5CcmcGhgWLOi735VZB+7otjX4/d0
+
+# Add the files to the image
+ADD . .
+
+# Cache Elixir deps
+RUN mix deps.get --only prod
+RUN mix deps.compile
+
+WORKDIR assets
+# Cache Node deps
+RUN npm i
+
+# Compile JavaScript
+RUN npm run deploy
+
+WORKDIR ..
+# Compile app
+RUN mix compile
+RUN mix phx.digest
+
+# Generate release
+ENTRYPOINT ["mix"]
+CMD ["distillery.release"]

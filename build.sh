@@ -1,20 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# exit on error
-set -o errexit
+# Remove old releases
+rm -rf _build/prod/rel/*
 
-# Initial Setup
-mix deps.get --only prod
-MIX_ENV=prod mix compile
+# Build the image
+docker build --rm -t badges-build -f Dockerfile.build .
 
-# Compile assets
-npm install --prefix ./assets
-npm run deploy --prefix ./assets
-mix phx.digest
-
-# Build the release and overwrite the existing release directory
-MIX_ENV=prod mix release --overwrite
-
-
-# Perform migrations
-_build/prod/rel/badges/bin/badges eval "Badges.Release.migrate"
+# Run the container
+docker run -it --rm --name badges-build -v $(pwd)/_build/prod/rel:/opt/app/_build/prod/rel badges-build
