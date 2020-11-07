@@ -15,6 +15,7 @@ defmodule BadgesWeb.Partials.SearchComponent do
      |> assign(assigns)}
   end
 
+  @impl true
   def handle_event("search", %{"q" => query}, socket) do
     payload = {socket.assigns.id, query}
     case socket.assigns.target do

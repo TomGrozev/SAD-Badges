@@ -325,15 +325,13 @@ defmodule Badges.Tests do
     Repo.all(parts_query)
   end
 
-  alias Badges.Activities
-  alias Badges.Students
   alias Badges.Activities.Activity
-  alias Badges.Students.{Student, TestsCompleted, TopicsCompleted, PartsCompleted}
+  alias Badges.Students.{TestsCompleted, TopicsCompleted, PartsCompleted}
 
   @doc """
   Marks a test, topic or part as complete
   """
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "test", t_id)
+  def mark_complete(%Activity{id: a_id}, s_id, "test", t_id)
       when not is_nil(a_id) and not is_nil(s_id) do
     TestsCompleted.changeset(%TestsCompleted{}, %{
       activity_id: a_id,
@@ -343,7 +341,7 @@ defmodule Badges.Tests do
     |> Repo.insert()
   end
 
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "topic", t_id)
+  def mark_complete(%Activity{id: a_id}, s_id, "topic", t_id)
       when not is_nil(a_id) and not is_nil(s_id) do
     TopicsCompleted.changeset(%TopicsCompleted{}, %{
       activity_id: a_id,
@@ -353,7 +351,7 @@ defmodule Badges.Tests do
     |> Repo.insert()
   end
 
-  def mark_complete(%Activity{id: a_id} = activity, s_id, "part", t_id)
+  def mark_complete(%Activity{id: a_id}, s_id, "part", t_id)
       when not is_nil(a_id) and not is_nil(s_id) do
     PartsCompleted.changeset(%PartsCompleted{}, %{
       activity_id: a_id,

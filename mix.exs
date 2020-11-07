@@ -4,7 +4,7 @@ defmodule Badges.MixProject do
   def project do
     [
       app: :badges,
-      version: "0.1.0",
+      version: "0.5.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),

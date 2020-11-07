@@ -1,3 +1,30 @@
+<!-- TODO: Fix alerts in modals -->
+<header>
+  <div class="p-4 w-full">
+    <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg ">
+      <%= live_patch to: Routes.page_path(@socket, :index), class: "px-2 mr-2 border-r border-gray-800" do %>
+      <img src="<%= Routes.static_path(@socket, "/images/logo.png") %>"
+           alt="SAD Badges" class="w-8 h-8 -mt-1 inline mx-auto">
+      <% end %>
+      <%= live_patch to: Routes.student_index_path(@socket, :index), title: "Students", class: "px-1 cursor-pointer hover:text-gray-700" do %>
+      <i class="fas fa-user p-2 bg-gray-200 rounded-full"> </i>
+      <% end %>
+      <%= live_patch to: Routes.group_index_path(@socket, :index), title: "Groups", class: "px-1 cursor-pointer hover:text-gray-700" do %>
+      <i class="fas fa-users p-2 bg-gray-200 rounded-full"> </i>
+      <% end %>
+      <%= live_patch to: Routes.teacher_index_path(@socket, :index), title: "Teachers", class: "px-1 cursor-pointer hover:text-gray-700" do %>
+      <i class="fas fa-chalkboard-teacher p-2 bg-gray-200 rounded-full"> </i>
+      <% end %>
+      <%= live_patch to: Routes.activity_index_path(@socket, :index), title: "Activities", class: "px-1 cursor-pointer hover:text-gray-700" do %>
+      <i class="fas fa-school p-2 bg-gray-200 rounded-full"> </i>
+      <% end %>
+      <%= live_patch to: Routes.test_index_path(@socket, :index), title: "Tests", class: "px-1 cursor-pointer hover:text-gray-700" do %>
+      <i class="fas fa-book-open p-2 bg-gray-200 rounded-full"> </i>
+      <% end %>
+    </div>
+  </div>
+</header>
+
 <main role="main" class="w-full p-6">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"

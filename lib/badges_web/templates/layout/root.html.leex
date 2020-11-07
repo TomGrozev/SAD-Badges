@@ -9,32 +9,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
-  <body>
-    <header>
-      <div class="p-4 w-full">
-        <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg ">
-          <span class="px-2 mr-2 border-r border-gray-800">
-            <img src="<%= Routes.static_path(@conn, "/images/logo.png") %>"
-                 alt="SAD Badges" class="w-8 h-8 -mt-1 inline mx-auto">
-          </span>
-          <%= live_patch to: Routes.student_index_path(@conn, :index), title: "Students", class: "px-1 cursor-pointer hover:text-gray-700" do %>
-            <i class="fas fa-user p-2 bg-gray-200 rounded-full"> </i>
-          <% end %>
-          <%= live_patch to: Routes.group_index_path(@conn, :index), title: "Groups", class: "px-1 cursor-pointer hover:text-gray-700" do %>
-            <i class="fas fa-users p-2 bg-gray-200 rounded-full"> </i>
-          <% end %>
-          <%= live_patch to: Routes.teacher_index_path(@conn, :index), title: "Teachers", class: "px-1 cursor-pointer hover:text-gray-700" do %>
-            <i class="fas fa-chalkboard-teacher p-2 bg-gray-200 rounded-full"> </i>
-          <% end %>
-          <%= live_patch to: Routes.activity_index_path(@conn, :index), title: "Activities", class: "px-1 cursor-pointer hover:text-gray-700" do %>
-            <i class="fas fa-school p-2 bg-gray-200 rounded-full"> </i>
-          <% end %>
-          <%= live_patch to: Routes.test_index_path(@conn, :index), title: "Tests", class: "px-1 cursor-pointer hover:text-gray-700" do %>
-            <i class="fas fa-book-open p-2 bg-gray-200 rounded-full"> </i>
-          <% end %>
-        </div>
-      </div>
-    </header>
+  <body class="bg-gray-100">
     <%= @inner_content %>
   </body>
 </html>

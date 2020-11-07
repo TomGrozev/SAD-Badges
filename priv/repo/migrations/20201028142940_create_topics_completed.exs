@@ -4,8 +4,8 @@ defmodule Badges.Repo.Migrations.CreateTopicsCompleted do
   def change do
     create table(:topics_completed) do
       add :datetime, :utc_datetime
-      add :student_id, references(:students)
-      add :topic_id, references(:topics)
+      add :student_id, references(:students, on_delete: :delete_all)
+      add :topic_id, references(:topics, on_delete: :delete_all)
 
       timestamps()
     end

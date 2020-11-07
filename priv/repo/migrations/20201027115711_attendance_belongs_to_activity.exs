@@ -3,7 +3,7 @@ defmodule Badges.Repo.Migrations.AttendanceBelongsToActivity do
 
   def change do
     alter table(:activity_attendance) do
-      add :activity_id, references(:activities)
+      add :activity_id, references(:activities, on_delete: :delete_all)
     end
   end
 end

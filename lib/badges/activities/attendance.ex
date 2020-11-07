@@ -17,6 +17,6 @@ defmodule Badges.Activities.Attendance do
     attendance
     |> cast(attrs, [:status, :reason])
     |> validate_required([:status])
-    |> unique_constraint([:activity_id])
+    |> unique_constraint([:activity_id, :student_id])
   end
 end

@@ -69,9 +69,15 @@ defmodule BadgesWeb.ActivityLive.FormCompleteComponent do
          )
          |> push_redirect(to: socket.assigns.return_to)}
 
-      # TODO: Fix
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, changeset: changeset)}
+      {:error, %Ecto.Changeset{errors: errors}} ->
+        message =
+          List.first(errors)
+          |> elem(1)
+          |> elem(0)
+
+        {:noreply,
+          socket
+          |> put_flash(:error, message || "Error marking item as complete.")}
     end
   end
 end

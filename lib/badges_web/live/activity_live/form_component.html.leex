@@ -9,19 +9,16 @@ phx_submit: "save" %>
 
   <div class="mt-2">
 
-      <p>Completed <strong class="text-gray-700">now</strong>.</p>
-      <button type="button" class="btn cta">Set Custom Date</button>
+      <div class="form-control">
+          <%= label f, :name %>
+          <%= text_input f, :name %>
+          <%= error_tag f, :name %>
+      </div>
 
       <div class="form-control">
         <%= label f, :datetime %>
         <%= datetime_select f, :datetime %>
         <%= error_tag f, :datetime %>
-      </div>
-
-      <div class="form-control">
-        <%= label f, :name %>
-        <%= text_input f, :name %>
-        <%= error_tag f, :name %>
       </div>
 
   </div>

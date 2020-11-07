@@ -15,5 +15,6 @@ defmodule Badges.Students.TestsCompleted do
     tests_completed
     |> cast(attrs, [:student_id, :test_id, :activity_id])
     |> validate_required([:student_id, :test_id, :activity_id])
+    |> unique_constraint([:test_id, :student_id], name: :tests_completed_test_id_student_id_index, message: "Test already completed")
   end
 end

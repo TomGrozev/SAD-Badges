@@ -3,7 +3,7 @@ defmodule Badges.Repo.Migrations.ActivityParts do
 
   def change do
     alter table(:parts_completed) do
-      add :activity_id, references(:activities)
+      add :activity_id, references(:activities, on_delete: :nilify_all)
     end
   end
 end

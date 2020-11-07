@@ -15,5 +15,6 @@ defmodule Badges.Students.TopicsCompleted do
     topics_completed
     |> cast(attrs, [:student_id, :topic_id, :activity_id])
     |> validate_required([:student_id, :topic_id, :activity_id])
+    |> unique_constraint([:topic_id, :student_id], name: :topics_completed_topic_id_student_id_index, message: "Topic already completed")
   end
 end

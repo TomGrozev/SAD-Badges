@@ -69,11 +69,10 @@
         <h2 class="text-lg font-bold leading-4">Completed Parts </h2>
         <div class="flex justify-between items-center mt-4">
           <%= for part <- @student.parts do %>
-            <!-- TODO: Make work for part link -->
-          <div class="relative inline-block px-3 py-1 font-semibold leading-tight">
-            <div class="absolute inset-0 rounded-full bg-info-light"></div>
-            <div class="relative text-xs text-info-dark"><%= humanize part.name %></div>
-          </div>
+            <%= live_patch to: Routes.test_topic_part_show_path(@socket, :show, part.topic.test_id, part.topic.id, part.id), class: "relative inline-block px-3 py-1 font-semibold leading-tight" do %>
+              <div class="absolute inset-0 rounded-full bg-info-light"></div>
+              <div class="relative text-xs text-info-dark"><%= humanize part.name %></div>
+            <% end %>
           <% end %>
         </div>
       </div>

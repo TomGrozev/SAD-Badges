@@ -64,7 +64,8 @@ defmodule Badges.Students do
   Loads completed tests, topics and parts onto student struct
   """
   def load_completed(%Student{} = student) do
-    Repo.preload(student, [:tests, :topics, :parts])
+    Repo.preload(student, [:tests, :topics, {:parts, :topic}])
+    |> IO.inspect()
   end
 
   @doc """

@@ -104,11 +104,16 @@ defmodule Badges.Activities do
     Activity.changeset(activity, attrs)
   end
 
-  def load_attendances(%Activity{} = activity) do
-    Repo.preload(activity, attendances: [:student])
-  end
-
   alias Badges.Activities.Attendance
+
+  def get_attendances(%Activity{} = activity) do
+    query = from a in Attendance,
+            where: a.activity_id == ^activity.id,
+            preload: [:student],
+            group_by: a.id
+
+    Repo.all(query)
+  end
 
   @doc """
 

@@ -22,8 +22,7 @@ defmodule BadgesWeb.ActivityLive.Attendance do
 
   defp get_attendances(activity) do
     activity
-    |> Activities.load_attendances()
-    |> Map.get(:attendances)
+    |> Activities.get_attendances()
     |> case do
       [] -> create_attendances(activity)
       %Ecto.Association.NotLoaded{} -> create_attendances(activity)
