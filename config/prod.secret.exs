@@ -40,7 +40,7 @@ config :badges, BadgesWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-#config :badges, BadgesWeb.Endpoint, server: true
+config :badges, BadgesWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.

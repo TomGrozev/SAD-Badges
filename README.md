@@ -11,7 +11,7 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-## Production
+## Production / No Dependencies
 
 To run in production, simply run the following commands:
 (Make sure docker is running, also may need to run commands as root if docker is running as root).
@@ -21,11 +21,13 @@ $ ./build.sh
 $ docker-compose up
 ```
 
-For the nginx proxy server (not required but nice to have) in another shell:
+For the nginx proxy server in another shell:
 ```sh
 $ cd nginx
 $ docker-compose up
 ```
+
+Now you can access the website at `http://127.0.0.1`
 
 ## Learn more
 

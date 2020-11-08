@@ -7,16 +7,16 @@ defmodule Badges.Release do
     :ecto_sql
   ]
 
-  def get_app, do: :badges
+  def get_app, do: Application.get_application(__MODULE__)
 
   def repos, do: Application.get_env(get_app(), :ecto_repos, [])
 
   def seed do
     me = get_app()
 
-    IO.puts "Loading #{me}.."
+#    IO.puts "Loading #{me}.."
     # Load the code for app, but don't start it
-    :ok = Application.load(me)
+#    :ok = Application.load(me)
 
     IO.puts "Starting dependencies.."
     # Start apps necessary for executing migrations
@@ -24,7 +24,7 @@ defmodule Badges.Release do
 
     # Start the Repo(s) for badges
     IO.puts "Starting repos.."
-    Enum.each(repos(), &(&1.start_link(pool_size: 1)))
+    Enum.each(repos(), &(&1.start_link(pool_size: 10)))
 
     # Run migrations
     migrate()

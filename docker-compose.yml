@@ -4,9 +4,10 @@ services:
     image: postgres:alpine
     container_name: badges-db
     environment:
-      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
       - POSTGRES_DB=badges_prod
+      - POSTGR_HOST_AUTH_METHOD=trust
     networks:
       - nginx-network
   admin:
@@ -24,10 +25,10 @@ services:
     image: badges-release
     container_name: badges-server
     environment:
-      - PORT=5000
-      - HOST="badges.com"
+      - PORT=4000
+      - HOST=127.0.0.1
     expose:
-      - "5000"
+      - "4000"
     command: foreground
     networks:
       - nginx-network
